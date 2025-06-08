@@ -11,3 +11,7 @@ cd src
 java main
 cd ../
 rm src/main.class
+rm one
+rm two
+rm three
+echo "completed hello world tasks!"
