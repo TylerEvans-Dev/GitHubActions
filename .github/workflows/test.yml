@@ -1,0 +1,79 @@
+name: Multi-Language CI/CD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-c:
+    name: Build and Test C Code
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install GCC
+        run: sudo apt-get install build-essential -y
+
+      - name: Build C program
+        run: gcc -o my_program src/c/main.c
+
+      - name: Run C program
+        run: ./my_program
+
+  build-java:
+    name: Build and Test Java Code
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: "temurin"
+          java-version: "17"
+
+      - name: Compile Java code
+        run: javac src/java/Main.java
+
+      - name: Run Java program
+        run: java -cp src/java Main
+
+  build-python:
+    name: Test Python Code
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run Python tests
+        run: pytest
+
+  build-rust:
+    name: Build and Test Rust Code
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          profile: minimal
+          override: true
+
+      - name: Build Rust project
+        run: cargo build --verbose
+
+      - name: Run Rust tests
+        run: cargo test --verbose
