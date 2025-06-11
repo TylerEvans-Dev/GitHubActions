@@ -24,7 +24,7 @@ jobs:
       - name: run program
         run: ./myprogram
   build-cpp:
-    name: test Cpp code
+    name: test C++ code
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -35,3 +35,20 @@ jobs:
         run: g++ -o hello_world src/main.cpp
       - name: execute program
         run: ./hello_world
+  build-rust:
+    name: Test Rust code
+    runs-on: ubuntu-latest
+    steps:
+      - uses: action/checkout@v4
+
+      - name: setup rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          profile: minimal
+          overide: true
+
+      - name: make the project
+        run: rustc src/main.rs -o three
+      - name: execute rust code
+        run: ./three
