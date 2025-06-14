@@ -74,6 +74,7 @@ jobs:
       - name: setup of java
         uses: action/setup-java@v4
         with:
+          distribution: "temurin"
           java-version: 17
       - name: compile java code
         run: javac src/main.java
