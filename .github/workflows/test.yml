@@ -39,16 +39,17 @@ jobs:
     name: Test Rust code
     runs-on: ubuntu-latest
     steps:
-      - uses: action/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: setup rust
+      - name: Set up Rust
         uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
           profile: minimal
-          overide: true
+          override: true
 
-      - name: make the project
-        run: rustc src/main.rs -o three
-      - name: execute rust code
-        run: ./three
+      - name: Build Rust project
+        run: rustc src/main.c -o main
+
+      - name: Run Rust tests
+        run: ./main
