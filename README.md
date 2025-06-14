@@ -2,4 +2,4 @@
 ## Friday June 6 2025
 the code in the files is just hello world in c++ c, python, java and rust
 </br>
-![Build status](https://github.com/TylerEvans-Dev/GitHubActions.git/actions/workflows/test.yaml)
+![Build status](https://github.com/TylerEvans-Dev/GitHubActions/actions/workflows/test.yaml/badge.svg)
