@@ -46,7 +46,7 @@ jobs:
         with:
           toolchain: stable
           profile: minimal
-          #override: true
+          override: true
       - name: Build Rust project
         run: rustc src/main.rs -o main
 
