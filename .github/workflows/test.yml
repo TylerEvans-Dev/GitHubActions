@@ -79,4 +79,4 @@ jobs:
       - name: compile java code
         run: javac src/main.java
       - name: running java code
-        run: java main
+        run: java src/main
