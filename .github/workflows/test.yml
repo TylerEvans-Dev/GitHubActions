@@ -46,7 +46,7 @@ jobs:
         with:
           toolchain: stable
           profile: minimal
-          override: true
+          #override: true
       - name: Build Rust project
         run: rustc src/main.rs -o main
 
@@ -65,3 +65,17 @@ jobs:
           python-version: "3.11"
       - name: run python code
         run: python3 src/main.py
+  build-java:
+    name: Testing Java code
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: setup of java
+        uses: action/setup-java@v4
+        with:
+          java-version: 17
+      - name: compile java code
+        run: javac src/main.java
+      - name: running java code
+        run: java main
