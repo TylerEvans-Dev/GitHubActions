@@ -13,7 +13,7 @@ on:
     branches: [main]
 jobs:
   build-c:
-    name: test C code here
+    name: Testing C Code
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -24,7 +24,7 @@ jobs:
       - name: run program
         run: ./myprogram
   build-cpp:
-    name: test C++ code
+    name: Testing C++ Code
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -36,7 +36,7 @@ jobs:
       - name: execute program
         run: ./hello_world
   build-rust:
-    name: Test Rust code
+    name: Test Rust Code
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -47,9 +47,25 @@ jobs:
           toolchain: stable
           profile: minimal
           override: true
-
       - name: Build Rust project
         run: rustc src/main.rs -o main
 
       - name: Run Rust tests
         run: ./main
+  build-python:
+    name: Testing Python Code
+    runs-on: ubuntu-latest
+    steps:
+      #this makes it so actions can get code from the repo used in all code
+      - uses: actions/checkout@v4
+      #this is the python version setup
+      - name: python setup
+        uses: actions/python@v5
+        with:
+          python-version: "3.11"
+      - name: install dep
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirments.txt
+      - name: run python code
+        uses: python3 src/main.py
